@@ -15,11 +15,13 @@ public class SellerController {
     @Autowired
     private SellerRepository sellerRepository;
 
+    // Get all sellers
     @GetMapping("/all")
     public Iterable<Seller> getAllSellers() {
         return sellerRepository.findAll();
     }
 
+    // Get seller by id
     @GetMapping("/{id}")
     public ResponseEntity<Seller> getSellerById(@PathVariable Long id) {
         Optional<Seller> seller = sellerRepository.findById(id);
@@ -27,12 +29,14 @@ public class SellerController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    // Add seller
     @PostMapping("/add")
     public ResponseEntity<Seller> addSeller(@RequestBody Seller seller) {
         Seller savedSeller = sellerRepository.save(seller);
         return ResponseEntity.ok(savedSeller);
     }
 
+    // Update seller
     @PutMapping("/update/{id}")
     public ResponseEntity<Seller> updateSeller(@PathVariable Long id, @RequestBody Seller updatedSeller) {
         return sellerRepository.findById(id)
@@ -49,6 +53,7 @@ public class SellerController {
                 });
     }
 
+    // Delete seller
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteSeller(@PathVariable Long id) {
         if (sellerRepository.existsById(id)) {

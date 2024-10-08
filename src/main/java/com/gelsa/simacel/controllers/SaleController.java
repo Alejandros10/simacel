@@ -10,20 +10,20 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/sales")
-@CrossOrigin(origins = "*") // Permite solicitudes desde cualquier origen
+@CrossOrigin(origins = "*")
 public class SaleController {
 
     @Autowired
     private SaleRepository saleRepository;
 
-    // Obtener todas las ventas
+    // Get all sales
     @GetMapping("/all")
     public ResponseEntity<Iterable<Sale>> getAllSales() {
         Iterable<Sale> sales = saleRepository.findAll();
         return ResponseEntity.ok(sales);
     }
 
-    // Obtener venta por id
+    // Get sale by id
     @GetMapping("/{id}")
     public ResponseEntity<Sale> getSaleById(@PathVariable Long id) {
         Optional<Sale> sale = saleRepository.findById(id);
@@ -31,14 +31,14 @@ public class SaleController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // Añadir nueva venta
+    // Add sale
     @PostMapping("/add")
     public ResponseEntity<Sale> addSale(@RequestBody Sale sale) {
         Sale savedSale = saleRepository.save(sale);
         return ResponseEntity.status(201).body(savedSale);
     }
 
-    // Actualizar venta existente
+    // Update sale
     @PutMapping("/update/{id}")
     public ResponseEntity<Sale> updateSale(@PathVariable Long id, @RequestBody Sale updatedSale) {
         return saleRepository.findById(id)
@@ -57,7 +57,7 @@ public class SaleController {
                 });
     }
 
-    // Eliminar venta por id
+    // Delete sale
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteSale(@PathVariable Long id) {
         if (saleRepository.existsById(id)) {
