@@ -1,28 +1,28 @@
 package com.gelsa.simacel.models;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 @Entity
 public class Sale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_sale")
     private Long id;
 
-    @Column(nullable = false)
-    private double price;
+    private BigDecimal price;
+    private Timestamp saleDate;
 
-    @Column(nullable = false)
-    private LocalDateTime saleDate;
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
 
     @ManyToOne
-    @JoinColumn(name = "id_seller", nullable = false)
+    @JoinColumn(name = "id_seller")
     private Seller seller;
 
     @ManyToOne
-    @JoinColumn(name = "id_operator", nullable = false)
+    @JoinColumn(name = "id_operator")
     private Operator operator;
 
     // Getters y Setters
@@ -34,20 +34,28 @@ public class Sale {
         this.id = id;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public LocalDateTime getSaleDate() {
+    public Timestamp getSaleDate() {
         return saleDate;
     }
 
-    public void setSaleDate(LocalDateTime saleDate) {
+    public void setSaleDate(Timestamp saleDate) {
         this.saleDate = saleDate;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Seller getSeller() {

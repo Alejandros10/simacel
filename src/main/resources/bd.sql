@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS Sale (
                                     id_sale INT AUTO_INCREMENT PRIMARY KEY,
                                     price DECIMAL(10, 2) NOT NULL,
                                     sale_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                    phone_number VARCHAR(15) NOT NULL,
                                     id_seller INT,
                                     id_operator INT,
                                     FOREIGN KEY (id_seller) REFERENCES Seller(id_seller),

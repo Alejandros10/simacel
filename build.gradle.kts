@@ -22,7 +22,7 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.hibernate:hibernate-core:6.3.1.Final") // Compatible con Jakarta
+    implementation("org.hibernate:hibernate-core:6.3.1.Final")
     runtimeOnly("com.mysql:mysql-connector-j:8.2.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

@@ -45,6 +45,7 @@ public class SaleController {
                 .map(sale -> {
                     sale.setPrice(updatedSale.getPrice());
                     sale.setSaleDate(updatedSale.getSaleDate());
+                    sale.setPhoneNumber(updatedSale.getPhoneNumber());
                     sale.setSeller(updatedSale.getSeller());
                     sale.setOperator(updatedSale.getOperator());
                     Sale savedSale = saleRepository.save(sale);

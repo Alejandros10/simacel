@@ -14,7 +14,6 @@ public class Operator {
     private String name;
 
     // Getters y Setters
-
     public Operator() {
     }
 
