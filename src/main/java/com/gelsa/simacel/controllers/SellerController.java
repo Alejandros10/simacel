@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/sellers")
 public class SellerController {
@@ -62,5 +63,13 @@ public class SellerController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    // Get seller by Document Number
+    @GetMapping("/document/{documentNumber}")
+    public ResponseEntity<Seller> getSellerByDocumentNumber(@PathVariable String documentNumber) {
+        Optional<Seller> seller = sellerRepository.findByDocumentNumber(documentNumber);
+        return seller.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

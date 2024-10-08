@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -19,7 +20,7 @@ public class SaleController {
     // Get all sales
     @GetMapping("/all")
     public ResponseEntity<Iterable<Sale>> getAllSales() {
-        Iterable<Sale> sales = saleRepository.findAll();
+        Iterable<Sale> sales = saleRepository.findAllByOrderBySaleDateDesc();
         return ResponseEntity.ok(sales);
     }
 
@@ -68,4 +69,5 @@ public class SaleController {
             return ResponseEntity.notFound().build();
         }
     }
+
 }
